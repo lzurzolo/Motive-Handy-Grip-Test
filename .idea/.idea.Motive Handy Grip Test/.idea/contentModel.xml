@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Admin\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Admin\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Motive Handy Grip Test.263932935.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Admin\Documents\Lorenzo\projects\Motive Handy Grip Test" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="OptiTrack" t="Include">
+          <e p="Editor" t="Include">
+            <e p="Materials" t="Include">
+              <e p="MarkerShader.shader" t="Include" />
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="OptitrackRigidBodyEditor.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Plugins" t="Include">
+            <e p="Managed" t="Include">
+              <e p="NatNetLib" t="Include">
+                <e p="Client.cs" t="Include" />
+                <e p="Native.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="README_OptiTrack_Unity.txt" t="Include" />
+          <e p="Scripts" t="Include">
+            <e p="OptitrackHmd.cs" t="Include" />
+            <e p="OptitrackRigidBody.cs" t="Include" />
+            <e p="OptitrackSkeletonAnimator.cs" t="Include" />
+            <e p="OptitrackStreamingClient.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="HandyDataWriter.cs" t="Include" />
+          <e p="HandyGripBone.cs" t="Include" />
+          <e p="HandyGripFingerTip.cs" t="Include" />
+          <e p="HandyGripHand.cs" t="Include" />
+          <e p="HandyGripObject.cs" t="Include" />
+          <e p="HandyGripThumbTip.cs" t="Include" />
+          <e p="MotivePositionReport.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Motive Handy Grip Test.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
