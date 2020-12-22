@@ -18,7 +18,7 @@ public class HandyGripThumbTip : MonoBehaviour
     
     private void Update()
     {
-        transform.position = _transform.position;
+        if(_transform) transform.position = _transform.position;
     }
     
     private void FixedUpdate()

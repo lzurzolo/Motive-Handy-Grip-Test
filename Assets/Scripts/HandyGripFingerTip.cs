@@ -82,7 +82,7 @@ public class HandyGripFingerTip : MonoBehaviour
     }
     private void Update()
     {
-        if(isActive) transform.position = _transform.position;
+        if(isActive && _transform) transform.position = _transform.position;
     }
 
     private void FixedUpdate()

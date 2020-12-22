@@ -13,7 +13,7 @@ public class HandyGripBone : MonoBehaviour
     
     private void Update()
     {
-        if(isActive) transform.position = _transform.position;
+        if(isActive && _transform) transform.position = _transform.position;
     }
 
     public void SetTransform(Transform t)
