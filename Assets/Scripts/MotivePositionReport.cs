@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using LibHandyGrip;
 using UnityEngine;
 
@@ -8,11 +6,10 @@ public class MotivePositionReport : MonoBehaviour
 {
     public int MarkerID { get; set; }
     private string FingerPosition;
-    //private CustomLogger logger;
     private HandyGripHand _hand;
     private Transform _transform;
 
-    private void Start ()
+    private void Start()
     {
         _hand = GameObject.Find("HandyGripHand").GetComponent<HandyGripHand>();
         if(MarkerID == 273)
@@ -66,9 +63,14 @@ public class MotivePositionReport : MonoBehaviour
         }
     }
 	
-    private void Update ()
+    private void Update()
     {
         _transform = transform;
     }
-    
+
+    private void OnDestroy()
+    {
+        if (MarkerID == 273) _hand.SetTipReference(FingerType.Index, _hand.nullTransform);
+        else if (MarkerID == 1092) _hand.SetTipReference(FingerType.Thumb, _hand.nullTransform);
+    }
 }

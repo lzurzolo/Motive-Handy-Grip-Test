@@ -173,13 +173,13 @@ public class HandyGripHand : MonoBehaviour
     
     private HandyDataWriter _dataWriter;
     
-    private Transform _nullTransform;
+    public Transform nullTransform;
     
     private void Start()
     {
         var nullGO = new GameObject();
         nullGO.transform.position = new Vector3(-100.0f, -100.0f, -100.0f);
-        _nullTransform = nullGO.transform;
+        nullTransform = nullGO.transform;
 
         Assert.IsTrue(fingerCount >= _minimumFingers && fingerCount <= _maximumFingers);
 
@@ -262,7 +262,7 @@ public class HandyGripHand : MonoBehaviour
             }
             else
             {
-                hgft.transform.position = _nullTransform.position;
+                hgft.transform.position = nullTransform.position;
             }
 
         }
@@ -902,63 +902,63 @@ public class HandyGripHand : MonoBehaviour
 
     private void SetNecessaryNullTransforms()
     {
-        if (thumbTip == null) thumbTip = _nullTransform;
-        if (thumbDistal == null) thumbDistal = _nullTransform;
-        if (thumbProximal == null) thumbProximal = _nullTransform;
-        if (thumbMetacarpal == null) thumbMetacarpal = _nullTransform;
+        if (thumbTip == null) thumbTip = nullTransform;
+        if (thumbDistal == null) thumbDistal = nullTransform;
+        if (thumbProximal == null) thumbProximal = nullTransform;
+        if (thumbMetacarpal == null) thumbMetacarpal = nullTransform;
         
-        if (indexTip == null) indexTip = _nullTransform;
-        if (indexDistal == null) indexDistal = _nullTransform;
-        if (indexProximal == null) indexProximal = _nullTransform;
-        if (indexMetacarpal == null) indexMetacarpal = _nullTransform;
+        if (indexTip == null) indexTip = nullTransform;
+        if (indexDistal == null) indexDistal = nullTransform;
+        if (indexProximal == null) indexProximal = nullTransform;
+        if (indexMetacarpal == null) indexMetacarpal = nullTransform;
 
         if (fingerCount < (int)FingerType.Middle)
         {
-            middleTip = _nullTransform;
-            middleDistal = _nullTransform;
-            middleProximal = _nullTransform;
-            middleMetacarpal = _nullTransform;
+            middleTip = nullTransform;
+            middleDistal = nullTransform;
+            middleProximal = nullTransform;
+            middleMetacarpal = nullTransform;
         }
         else
         {
-            if (middleTip == null) middleTip = _nullTransform;
-            if (middleDistal == null) middleDistal = _nullTransform;
-            if (middleProximal == null) middleProximal = _nullTransform;
-            if (middleMetacarpal == null) middleMetacarpal = _nullTransform;
+            if (middleTip == null) middleTip = nullTransform;
+            if (middleDistal == null) middleDistal = nullTransform;
+            if (middleProximal == null) middleProximal = nullTransform;
+            if (middleMetacarpal == null) middleMetacarpal = nullTransform;
         }
         
         if (fingerCount < (int) FingerType.Ring)
         {
-            ringTip = _nullTransform;
-            ringDistal = _nullTransform;
-            ringProximal = _nullTransform;
-            ringMetacarpal = _nullTransform;
+            ringTip = nullTransform;
+            ringDistal = nullTransform;
+            ringProximal = nullTransform;
+            ringMetacarpal = nullTransform;
         }
         else
         {
-            if (ringTip == null) ringTip = _nullTransform;
-            if (ringDistal == null) ringDistal = _nullTransform;
-            if (ringProximal == null) ringProximal = _nullTransform;
-            if (ringMetacarpal == null) ringMetacarpal = _nullTransform;
+            if (ringTip == null) ringTip = nullTransform;
+            if (ringDistal == null) ringDistal = nullTransform;
+            if (ringProximal == null) ringProximal = nullTransform;
+            if (ringMetacarpal == null) ringMetacarpal = nullTransform;
         }
         
         if (fingerCount < (int) FingerType.Pinky)
         {
-            littleTip = _nullTransform;
-            littleDistal = _nullTransform;
-            littleProximal = _nullTransform;
-            littleMetacarpal = _nullTransform;
+            littleTip = nullTransform;
+            littleDistal = nullTransform;
+            littleProximal = nullTransform;
+            littleMetacarpal = nullTransform;
         }
         else
         {
-            if (littleTip == null) littleTip = _nullTransform;
-            if (littleDistal == null) littleDistal = _nullTransform;
-            if (littleProximal == null) littleProximal = _nullTransform;
-            if (littleMetacarpal == null) littleMetacarpal = _nullTransform;
+            if (littleTip == null) littleTip = nullTransform;
+            if (littleDistal == null) littleDistal = nullTransform;
+            if (littleProximal == null) littleProximal = nullTransform;
+            if (littleMetacarpal == null) littleMetacarpal = nullTransform;
         }
         
-        if (wrist == null) wrist = _nullTransform;
-        if (palm == null) palm = _nullTransform;
+        if (wrist == null) wrist = nullTransform;
+        if (palm == null) palm = nullTransform;
     }
 }
 
