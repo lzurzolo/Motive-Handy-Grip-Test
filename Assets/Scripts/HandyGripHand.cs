@@ -174,9 +174,20 @@ public class HandyGripHand : MonoBehaviour
     private HandyDataWriter _dataWriter;
     
     public Transform nullTransform;
+
+    public List<GameObject> nullFingers;
     
     private void Start()
     {
+        nullFingers = new List<GameObject>(2);
+
+        for (int i = 0; i < nullFingers.Capacity; i++)
+        {
+            var nGO = new GameObject();
+            nGO.transform.position = new Vector3(-100.0f, -100.0f, -100.0f);
+            nullFingers.Insert(i, nGO);
+
+        }
         var nullGO = new GameObject();
         nullGO.transform.position = new Vector3(-100.0f, -100.0f, -100.0f);
         nullTransform = nullGO.transform;
@@ -189,13 +200,12 @@ public class HandyGripHand : MonoBehaviour
         GetHandyFingerReferences();
         SetThumbReferences();
         SetFingerTransforms();
-        if(_drawDebugRays) InitDebugLines();
+        if (_drawDebugRays)
+        {
+            InitDebugLines();
+            StartCoroutine(UpdateDebugLines());
+        }
         if (logData) InitLog();
-    }
-
-    private void Update()
-    {
-        if(_drawDebugRays) UpdateDebugLines();
     }
 
     private void FixedUpdate()
@@ -270,27 +280,14 @@ public class HandyGripHand : MonoBehaviour
 
     private void SetFingerTransforms()
     {
-        //if (wrist)
         _wrist.SetTransform(wrist);
-        //else _wrist.GetComponent<Renderer>().enabled = false;
-
-        //if (palm)
         _palm.SetTransform(palm);
-        //else _palm.GetComponent<Renderer>().enabled = false;
 
         SetTipReference(FingerType.Thumb, thumbTip);
-        //if (thumbDistal)
         _thumb.SetBoneTransform(BoneType.Distal, thumbDistal);
-        //else _thumb.SetBoneVisibility(BoneType.Distal, false);
-        
-        //if (thumbProximal)
         _thumb.SetBoneTransform(BoneType.Proximal, thumbProximal);
-        //else _thumb.SetBoneVisibility(BoneType.Proximal, false);
-        
-        //if (thumbMetacarpal)
         _thumb.SetBoneTransform(BoneType.Metacarpal, thumbMetacarpal);
-        //else _thumb.SetBoneVisibility(BoneType.Metacarpal, false);
-        
+
         SetTipReference(FingerType.Index, indexTip);
         //if(indexDistal)
         _fingers[(int)FingerType.Index].SetBoneTransform(BoneType.Distal, indexDistal);
@@ -459,22 +456,26 @@ public class HandyGripHand : MonoBehaviour
         );
     }
 
-    private void UpdateDebugLines()
+    private IEnumerator UpdateDebugLines()
     {
-        for (int i = 0; i < _debugLines.Count; i++)
+        WaitForSeconds waitTime = new WaitForSeconds(2);
+        while (true)
         {
-            var lr = _debugLines[i].GetComponent<LineRenderer>();
-            var finger = _fingers[i].GetTip();
-            if (finger.AreObjectsWithinGrasp())
+            for (int i = 0; i < _debugLines.Count; i++)
             {
-                lr.material.color = Color.green;
+                var lr = _debugLines[i].GetComponent<LineRenderer>();
+                var finger = _fingers[i].GetTip();
+                if (finger.AreObjectsWithinGrasp())
+                {
+                    lr.material.color = Color.green;
+                }
+                else
+                {
+                    lr.material.color = Color.red;
+                }
+                lr.SetPosition(0, _thumb.GetTip().transform.position);
+                lr.SetPosition(1, _fingers[i].GetTip().transform.position);
             }
-            else
-            {
-                lr.material.color = Color.red;
-            }
-            lr.SetPosition(0, _thumb.GetTip().transform.position);
-            lr.SetPosition(1, _fingers[i].GetTip().transform.position);
         }
     }
 

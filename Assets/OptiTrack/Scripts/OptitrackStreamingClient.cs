@@ -203,6 +203,7 @@ public class OptitrackStreamingClient : MonoBehaviour
                         sphere.transform.position = markerEntry.Value.Position;
                         
                         // BEGIN LORENZO ZURZOLO
+                        sphere.GetComponent<Renderer>().enabled = false;
                         sphere.AddComponent<MotivePositionReport>().MarkerID = markerEntry.Key;
                         // END LORENZO ZURZOLO
                         
@@ -229,6 +230,7 @@ public class OptitrackStreamingClient : MonoBehaviour
                         m_latestMarkerSpheres.Remove( markerId );
                     }
                 }
+
             }
         }
         else

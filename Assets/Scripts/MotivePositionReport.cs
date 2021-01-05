@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using LibHandyGrip;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public class MotivePositionReport : MonoBehaviour
             FingerPosition = "IndexTip";
             _transform = transform;
             _hand.SetTipReference(FingerType.Index, _transform);
+            Debug.Log("Created " + FingerPosition);
+            StartCoroutine(UpdatePosition());
         }
         else if(MarkerID == 2050)
         {
@@ -35,6 +38,8 @@ public class MotivePositionReport : MonoBehaviour
             FingerPosition = "ThumbTip";
             _transform = transform;
             _hand.SetTipReference(FingerType.Thumb, _transform);
+            Debug.Log("Created " + FingerPosition);
+            StartCoroutine(UpdatePosition());
         }
         else if(MarkerID == 2184)
         {
@@ -62,15 +67,29 @@ public class MotivePositionReport : MonoBehaviour
             FingerPosition = null;
         }
     }
-	
-    private void Update()
-    {
-        _transform = transform;
-    }
 
     private void OnDestroy()
     {
-        if (MarkerID == 273) _hand.SetTipReference(FingerType.Index, _hand.nullTransform);
-        else if (MarkerID == 1092) _hand.SetTipReference(FingerType.Thumb, _hand.nullTransform);
+        if (MarkerID == 273)
+        {
+            _hand.nullFingers[0].transform.position = _transform.position;
+            _hand.SetTipReference(FingerType.Index, _hand.nullFingers[0].transform);
+        }
+        else if (MarkerID == 1092)
+        {
+            _hand.nullFingers[1].transform.position = _transform.position;
+            _hand.SetTipReference(FingerType.Thumb, _hand.nullFingers[1].transform);
+        }
+        Debug.Log("Destroyed " + FingerPosition);
+    }
+
+    private IEnumerator UpdatePosition()
+    {
+        WaitForSeconds waitTime = new WaitForSeconds(1);
+        while (true)
+        {
+            _transform = transform;
+            yield return waitTime;
+        }
     }
 }
