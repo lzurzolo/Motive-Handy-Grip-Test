@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using LibHandyGrip;
 using UnityEngine;
-using UnityEngine.Assertions.Comparers;
 using Assert = UnityEngine.Assertions.Assert;
 
 namespace LibHandyGrip
@@ -22,6 +21,15 @@ namespace LibHandyGrip
         Distal = 0,
         Proximal,
         Metacarpal
+    }
+
+    public enum GlobalBoneIdentifier
+    {
+        ThumbTip = 0,
+        IndexTip,
+        MiddleTip,
+        RingTip,
+        LittleTip
     }
 
     public class HandyGripFinger
@@ -173,13 +181,13 @@ public class HandyGripHand : MonoBehaviour
     
     private HandyDataWriter _dataWriter;
     
-    public Transform nullTransform;
+    public Transform startingNullTransform;
 
     public List<GameObject> nullFingers;
     
     private void Start()
     {
-        nullFingers = new List<GameObject>(2);
+        nullFingers = new List<GameObject>(Enum.GetNames(typeof(GlobalBoneIdentifier)).Length);
 
         for (int i = 0; i < nullFingers.Capacity; i++)
         {
@@ -190,7 +198,7 @@ public class HandyGripHand : MonoBehaviour
         }
         var nullGO = new GameObject();
         nullGO.transform.position = new Vector3(-100.0f, -100.0f, -100.0f);
-        nullTransform = nullGO.transform;
+        startingNullTransform = nullGO.transform;
 
         Assert.IsTrue(fingerCount >= _minimumFingers && fingerCount <= _maximumFingers);
 
@@ -272,7 +280,7 @@ public class HandyGripHand : MonoBehaviour
             }
             else
             {
-                hgft.transform.position = nullTransform.position;
+                hgft.transform.position = startingNullTransform.position;
             }
 
         }
@@ -289,65 +297,32 @@ public class HandyGripHand : MonoBehaviour
         _thumb.SetBoneTransform(BoneType.Metacarpal, thumbMetacarpal);
 
         SetTipReference(FingerType.Index, indexTip);
-        //if(indexDistal)
         _fingers[(int)FingerType.Index].SetBoneTransform(BoneType.Distal, indexDistal);
-        //else _fingers[(int)FingerType.Index].SetBoneVisibility(BoneType.Distal, false);
-        
-        //if(indexProximal)
         _fingers[(int)FingerType.Index].SetBoneTransform(BoneType.Proximal, indexProximal);
-        //else _fingers[(int)FingerType.Index].SetBoneVisibility(BoneType.Proximal, false);
-
-        //if(indexMetacarpal)
         _fingers[(int)FingerType.Index].SetBoneTransform(BoneType.Metacarpal, indexMetacarpal);
-        //else _fingers[(int)FingerType.Index].SetBoneVisibility(BoneType.Metacarpal, false);
-
-
+        
         if (fingerCount >= 2)
         {
             SetTipReference(FingerType.Middle, middleTip);
-            //if(middleDistal)
             _fingers[(int)FingerType.Middle].SetBoneTransform(BoneType.Distal, middleDistal);
-            //else _fingers[(int)FingerType.Middle].SetBoneVisibility(BoneType.Distal, false);
-        
-            //if(middleProximal)
             _fingers[(int)FingerType.Middle].SetBoneTransform(BoneType.Proximal, middleProximal);
-            //else _fingers[(int)FingerType.Middle].SetBoneVisibility(BoneType.Proximal, false);
-
-            //if(middleMetacarpal)
             _fingers[(int)FingerType.Middle].SetBoneTransform(BoneType.Metacarpal, middleMetacarpal);
-            //else _fingers[(int)FingerType.Middle].SetBoneVisibility(BoneType.Metacarpal, false);
         }
 
         if (fingerCount >= 3)
         {
             SetTipReference(FingerType.Ring, ringTip);
-            //if(ringDistal)
             _fingers[(int)FingerType.Ring].SetBoneTransform(BoneType.Distal, ringDistal);
-            //else _fingers[(int)FingerType.Ring].SetBoneVisibility(BoneType.Distal, false);
-        
-            //if(ringProximal)
             _fingers[(int)FingerType.Ring].SetBoneTransform(BoneType.Proximal, ringProximal);
-            //else _fingers[(int)FingerType.Ring].SetBoneVisibility(BoneType.Proximal, false);
-
-            //if(ringMetacarpal)
             _fingers[(int)FingerType.Ring].SetBoneTransform(BoneType.Metacarpal, ringMetacarpal);
-            //else _fingers[(int)FingerType.Ring].SetBoneVisibility(BoneType.Metacarpal, false);
         }
 
         if (fingerCount == 4)
         {
             SetTipReference(FingerType.Pinky, littleTip);
-            //if(littleDistal)
             _fingers[(int)FingerType.Pinky].SetBoneTransform(BoneType.Distal, littleDistal);
-            //else _fingers[(int)FingerType.Pinky].SetBoneVisibility(BoneType.Distal, false);
-        
-            //if(littleProximal)
             _fingers[(int)FingerType.Pinky].SetBoneTransform(BoneType.Proximal, littleProximal);
-            //else _fingers[(int)FingerType.Pinky].SetBoneVisibility(BoneType.Proximal, false);
-
-            //if(littleMetacarpal)
             _fingers[(int)FingerType.Pinky].SetBoneTransform(BoneType.Metacarpal, littleMetacarpal);
-            //else _fingers[(int)FingerType.Pinky].SetBoneVisibility(BoneType.Metacarpal, false);
         }
     }
     
@@ -903,63 +878,63 @@ public class HandyGripHand : MonoBehaviour
 
     private void SetNecessaryNullTransforms()
     {
-        if (thumbTip == null) thumbTip = nullTransform;
-        if (thumbDistal == null) thumbDistal = nullTransform;
-        if (thumbProximal == null) thumbProximal = nullTransform;
-        if (thumbMetacarpal == null) thumbMetacarpal = nullTransform;
+        if (thumbTip == null) thumbTip = startingNullTransform;
+        if (thumbDistal == null) thumbDistal = startingNullTransform;
+        if (thumbProximal == null) thumbProximal = startingNullTransform;
+        if (thumbMetacarpal == null) thumbMetacarpal = startingNullTransform;
         
-        if (indexTip == null) indexTip = nullTransform;
-        if (indexDistal == null) indexDistal = nullTransform;
-        if (indexProximal == null) indexProximal = nullTransform;
-        if (indexMetacarpal == null) indexMetacarpal = nullTransform;
+        if (indexTip == null) indexTip = startingNullTransform;
+        if (indexDistal == null) indexDistal = startingNullTransform;
+        if (indexProximal == null) indexProximal = startingNullTransform;
+        if (indexMetacarpal == null) indexMetacarpal = startingNullTransform;
 
         if (fingerCount < (int)FingerType.Middle)
         {
-            middleTip = nullTransform;
-            middleDistal = nullTransform;
-            middleProximal = nullTransform;
-            middleMetacarpal = nullTransform;
+            middleTip = startingNullTransform;
+            middleDistal = startingNullTransform;
+            middleProximal = startingNullTransform;
+            middleMetacarpal = startingNullTransform;
         }
         else
         {
-            if (middleTip == null) middleTip = nullTransform;
-            if (middleDistal == null) middleDistal = nullTransform;
-            if (middleProximal == null) middleProximal = nullTransform;
-            if (middleMetacarpal == null) middleMetacarpal = nullTransform;
+            if (middleTip == null) middleTip = startingNullTransform;
+            if (middleDistal == null) middleDistal = startingNullTransform;
+            if (middleProximal == null) middleProximal = startingNullTransform;
+            if (middleMetacarpal == null) middleMetacarpal = startingNullTransform;
         }
         
         if (fingerCount < (int) FingerType.Ring)
         {
-            ringTip = nullTransform;
-            ringDistal = nullTransform;
-            ringProximal = nullTransform;
-            ringMetacarpal = nullTransform;
+            ringTip = startingNullTransform;
+            ringDistal = startingNullTransform;
+            ringProximal = startingNullTransform;
+            ringMetacarpal = startingNullTransform;
         }
         else
         {
-            if (ringTip == null) ringTip = nullTransform;
-            if (ringDistal == null) ringDistal = nullTransform;
-            if (ringProximal == null) ringProximal = nullTransform;
-            if (ringMetacarpal == null) ringMetacarpal = nullTransform;
+            if (ringTip == null) ringTip = startingNullTransform;
+            if (ringDistal == null) ringDistal = startingNullTransform;
+            if (ringProximal == null) ringProximal = startingNullTransform;
+            if (ringMetacarpal == null) ringMetacarpal = startingNullTransform;
         }
         
         if (fingerCount < (int) FingerType.Pinky)
         {
-            littleTip = nullTransform;
-            littleDistal = nullTransform;
-            littleProximal = nullTransform;
-            littleMetacarpal = nullTransform;
+            littleTip = startingNullTransform;
+            littleDistal = startingNullTransform;
+            littleProximal = startingNullTransform;
+            littleMetacarpal = startingNullTransform;
         }
         else
         {
-            if (littleTip == null) littleTip = nullTransform;
-            if (littleDistal == null) littleDistal = nullTransform;
-            if (littleProximal == null) littleProximal = nullTransform;
-            if (littleMetacarpal == null) littleMetacarpal = nullTransform;
+            if (littleTip == null) littleTip = startingNullTransform;
+            if (littleDistal == null) littleDistal = startingNullTransform;
+            if (littleProximal == null) littleProximal = startingNullTransform;
+            if (littleMetacarpal == null) littleMetacarpal = startingNullTransform;
         }
         
-        if (wrist == null) wrist = nullTransform;
-        if (palm == null) palm = nullTransform;
+        if (wrist == null) wrist = startingNullTransform;
+        if (palm == null) palm = startingNullTransform;
     }
 }
 

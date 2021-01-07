@@ -4,10 +4,8 @@
     <list default="true" id="8ebd0f2a-203d-46d2-b208-7f0feed53911" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Motive Handy Grip Test/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motive Handy Grip Test/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Motive Handy Grip Test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Motive Handy Grip Test/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/OptiTrack/Scripts/OptitrackStreamingClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/OptiTrack/Scripts/OptitrackStreamingClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandyGripHand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandyGripHand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandyGripThumbTip.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandyGripThumbTip.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandyGripObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandyGripObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MotivePositionReport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MotivePositionReport.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +33,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/HandyGripThumbTip.cs" />
         <option value="$PROJECT_DIR$/Assets/OptiTrack/Scripts/OptitrackStreamingClient.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandyGripFingerTip.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MotivePositionReport.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandyGripObject.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandyGripHand.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MotivePositionReport.cs" />
       </list>
     </option>
   </component>
@@ -77,7 +76,8 @@
       <workItem from="1607007686657" duration="3994000" />
       <workItem from="1607458625471" duration="4209000" />
       <workItem from="1608652824227" duration="5743000" />
-      <workItem from="1609876006652" duration="7279000" />
+      <workItem from="1609876006652" duration="7280000" />
+      <workItem from="1610037338919" duration="2832000" />
     </task>
     <servers />
   </component>

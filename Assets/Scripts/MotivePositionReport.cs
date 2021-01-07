@@ -18,7 +18,6 @@ public class MotivePositionReport : MonoBehaviour
             FingerPosition = "IndexTip";
             _transform = transform;
             _hand.SetTipReference(FingerType.Index, _transform);
-            Debug.Log("Created " + FingerPosition);
             StartCoroutine(UpdatePosition());
         }
         else if(MarkerID == 2050)
@@ -38,7 +37,6 @@ public class MotivePositionReport : MonoBehaviour
             FingerPosition = "ThumbTip";
             _transform = transform;
             _hand.SetTipReference(FingerType.Thumb, _transform);
-            Debug.Log("Created " + FingerPosition);
             StartCoroutine(UpdatePosition());
         }
         else if(MarkerID == 2184)
@@ -73,14 +71,13 @@ public class MotivePositionReport : MonoBehaviour
         if (MarkerID == 273)
         {
             _hand.nullFingers[0].transform.position = _transform.position;
-            _hand.SetTipReference(FingerType.Index, _hand.nullFingers[0].transform);
+            _hand.SetTipReference(FingerType.Index, _hand.nullFingers[(int)GlobalBoneIdentifier.IndexTip].transform);
         }
         else if (MarkerID == 1092)
         {
             _hand.nullFingers[1].transform.position = _transform.position;
-            _hand.SetTipReference(FingerType.Thumb, _hand.nullFingers[1].transform);
+            _hand.SetTipReference(FingerType.Thumb, _hand.nullFingers[(int)GlobalBoneIdentifier.ThumbTip].transform);
         }
-        Debug.Log("Destroyed " + FingerPosition);
     }
 
     private IEnumerator UpdatePosition()
